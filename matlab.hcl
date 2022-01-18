@@ -8,9 +8,14 @@ job "matlab" {
   }
 
   group "matlab" {
+    reschedule {
+      attempts       = 0
+    }
     task "matlab" {
       driver = "raw_exec"
-
+      restart {
+        attempts = 0
+      }
       config {
         command = "matlab"
         args = ["-batch", "${NOMAD_META_FULLCMD2RUN}"]
