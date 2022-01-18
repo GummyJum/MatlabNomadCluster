@@ -17,13 +17,19 @@ $ nomad job run matlab.hcl
 
 Then use matlab to dispatch some job, for example:
 ```matlab
-url = 'http://localhost:4646/v1/job/matlab/dispatch';
-script_to_run = 'disp hey';
-data = struct();
-data.Payload = matlab.net.base64encode(script_to_run);
-data.Meta = struct();
-response = webwrite(url, data);
-disp(response); 
+>> url = 'http://localhost:4646/v1/job/matlab/dispatch';
+>> script_to_run = 'disp hey';
+>> data = struct();
+>> data.Payload = matlab.net.base64encode(script_to_run);
+>> data.Meta = struct();
+>> response = webwrite(url, data)
+response = 
+  struct with fields:
+    DispatchedJobID: 'matlab/dispatch-1642501729-283d38c4'
+             EvalID: '0db6a76e-6b2e-b011-e11f-1d6c0b108661'
+    EvalCreateIndex: 35
+     JobCreateIndex: 34
+              Index: 35
 ```
 
 You can see the the job progress and logs in the nomad-ui at http://localhost:4646/ui/jobs/matlab
