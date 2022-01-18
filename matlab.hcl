@@ -4,6 +4,7 @@ job "matlab" {
   parameterized {
     payload       = "required"
     meta_required = []
+    meta_optional = ["Cmd", "Path", "CreatedBy", "RAM"]
   }
 
   group "matlab" {
