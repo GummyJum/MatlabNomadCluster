@@ -22,8 +22,8 @@ script_to_run = 'disp hey';
 data = struct();
 data.Payload = matlab.net.base64encode(script_to_run);
 data.Meta = struct();
-responseData = webwrite(url, data);
-disp(responseData); 
+response = webwrite(url, data);
+disp(response); 
 ```
 
 Then you can see the logs in the nomad-ui at http://localhost:4646/ui/jobs/matlab
