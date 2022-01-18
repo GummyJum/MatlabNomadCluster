@@ -2,8 +2,8 @@ job "matlab" {
   datacenters = ["dc1"]
   type = "batch"
   parameterized {
-    payload       = "required"
-    meta_required = []
+    payload       = "optional"
+    meta_required = ["FullCmd2Run"]
     meta_optional = ["Cmd", "Path", "CreatedBy", "RAM"]
   }
 
@@ -13,12 +13,9 @@ job "matlab" {
 
       config {
         command = "matlab"
-        args = ["-batch", "run('${NOMAD_TASK_DIR}/task.m');"]
+        args = ["-batch", "${NOMAD_META_FULLCMD2RUN}"]
       }
 
-      dispatch_payload {
-        file = "task.m"
-      }
     }
   }
 }

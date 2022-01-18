@@ -46,10 +46,10 @@ meta.Cmd = cmd;
 meta.Path = path2add;
 meta.RAM = '0';
 if ~isempty(path2add)
-    cmd = ['addpath(' path2add '); ' cmd];
+    cmd = ['addpath(''' path2add '''); ' cmd];
 end
 url = [mnc.config('nomad_url') '/job/matlab/dispatch'];
-data.Payload = matlab.net.base64encode(cmd);
+meta.FullCmd2Run = cmd;
 data.Meta = meta;
 response = webwrite(url, data);
 task_id = response.DispatchedJobID;
