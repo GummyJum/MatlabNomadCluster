@@ -26,8 +26,8 @@ response = webwrite(url, data);
 disp(response); 
 ```
 
-Then you can see the logs in the nomad-ui at http://localhost:4646/ui/jobs/matlab
-or you can query using the cli:
+You can see the the job progress and logs in the nomad-ui at http://localhost:4646/ui/jobs/matlab
+or query the job status using the cli:
 
 ```
 $ nomad job status matlab/dispatch-1642501729-283d38c4
@@ -51,7 +51,7 @@ ID        Node ID   Task Group  Version  Desired  Status    Created    Modified
 aad9e77a  5b7cbc65  matlab      1        run      complete  3m21s ago  3m16s ago
 ```
 
-And retrive the allocation logs accoardingly:
+And retrieve the allocation logs accoardingly:
 
 ```
 $ nomad alloc logs aad9e77a
