@@ -11,13 +11,19 @@ Then from another console:
 ```
 $ nomad job plan matlab.hcl
 ...
-$ nomad job run -check-index 0 matlab.hcl
+$ nomad job run matlab.hcl
 ...
 ```
 
-Then use the dispatch.m matlab script to dispatch some job, for example:
+Then use matlab to dispatch some job, for example:
 ```matlab
-dispatch 
+url = 'http://localhost:4646/v1/job/matlab/dispatch';
+script_to_run = 'disp hey';
+data = struct();
+data.Payload = matlab.net.base64encode(script_to_run);
+data.Meta = struct();
+responseData = webwrite(url, data);
+disp(responseData); 
 ```
 
 Then you can see the logs in the nomad-ui at http://localhost:4646/ui/jobs/matlab
